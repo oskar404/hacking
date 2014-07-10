@@ -7,12 +7,12 @@
 
 #CXXFLAGS := `pkg-config --cflags libxml-2.0`
 CXXFLAGS := 
-CC := clang
+CC := clang -Wall
     
 all: forkdemo
 
-forkdemo:
-	$(CC) -o $@ forkdemo.c
+forkdemo: forkdemo.c
+	$(CC) -o $@ $<
 
 clean:
 	@rm -f *~ src/*.o src/*~

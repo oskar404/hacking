@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <unistd.h>
 
-void main()
+int main()
 {
     int i;
     if (fork())
@@ -17,4 +18,5 @@ void main()
             printf("  => CHILD %d\n",i);
         }
     }
+    return 0;
 }
