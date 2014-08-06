@@ -9,9 +9,12 @@
 CXXFLAGS := 
 CC := clang -Wall
     
-all: forkdemo
+all: forkdemo tinyshell
 
 forkdemo: forkdemo.c
+	$(CC) -o $@ $<
+
+tinyshell: tinyshell.c
 	$(CC) -o $@ $<
 
 clean:
@@ -19,9 +22,9 @@ clean:
 	@rm -f output.txt
 
 distclean: clean
-	@rm -f forkdemo
+	@rm -f forkdemo tinyshell
 
-valgrind: forkdemo 
+valgrind: forkdemo
 	valgrind --leak-check=yes --tool=memcheck --show-reachable=yes ./$<
 
 wc:
