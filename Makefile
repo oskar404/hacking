@@ -9,7 +9,7 @@
 CXXFLAGS := 
 CC := clang -Wall
     
-all: forkdemo tinyshell
+all: forkdemo tinyshell zombiefarm
 
 forkdemo: forkdemo.c
 	$(CC) -o $@ $<
@@ -17,12 +17,15 @@ forkdemo: forkdemo.c
 tinyshell: tinyshell.c
 	$(CC) -o $@ $<
 
+zombiefarm: zombiefarm.c
+	$(CC) -o $@ $<
+
 clean:
 	@rm -f *~ src/*.o src/*~
 	@rm -f output.txt
 
 distclean: clean
-	@rm -f forkdemo tinyshell
+	@rm -f forkdemo tinyshell zombiefarm
 
 valgrind: forkdemo
 	valgrind --leak-check=yes --tool=memcheck --show-reachable=yes ./$<
