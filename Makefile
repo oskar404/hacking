@@ -24,11 +24,3 @@ clean:
 
 distclean: clean
 	@rm -f forkdemo tinyshell zombiefarm
-
-valgrind: forkdemo
-	valgrind --leak-check=yes --tool=memcheck --show-reachable=yes ./$<
-
-wc:
-	@echo "Counting lines..."
-	@find src -name "*.[ch]*" -exec cat {} \; | wc -l
-
