@@ -1,14 +1,12 @@
 #
 # FILE:         Makefile
-# DESCRIPTION:  Stub for development
+# DESCRIPTION:  Some linux process related tests
 #
 
 
+CXXFLAGS :=
+CC := clang -Wall -ansi
 
-#CXXFLAGS := `pkg-config --cflags libxml-2.0`
-CXXFLAGS := 
-CC := clang -Wall
-    
 all: forkdemo tinyshell zombiefarm
 
 forkdemo: forkdemo.c
@@ -31,6 +29,6 @@ valgrind: forkdemo
 	valgrind --leak-check=yes --tool=memcheck --show-reachable=yes ./$<
 
 wc:
-	@echo "Counting lines..."  
+	@echo "Counting lines..."
 	@find src -name "*.[ch]*" -exec cat {} \; | wc -l
 
