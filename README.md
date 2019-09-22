@@ -9,4 +9,5 @@ These tests should work with some version of Ubuntu.
 ## References
 
 - The Linux Programming Interface (Author: Michael Kerrisk)
-  Bit old book but these things do not change easily
+  Bit old book but these things do not change easily.
+  Book web page: http://man7.org/tlpi/
