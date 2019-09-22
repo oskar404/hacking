@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <gnu/libc-version.h>
 
 /* Some macro magic to get compile time values printed on comile time */
@@ -14,5 +15,6 @@ int main()
     printf("Compile time c standard (__STDC_VERSION__): %ld\n", __STDC_VERSION__);
     printf("Compile time glibc version: %d.%d\n", __GLIBC__, __GLIBC_MINOR__);
     printf("Runtime glibc version: %s\n", gnu_get_libc_version());
+    printf("POSIX version: %ld\n", _POSIX_VERSION);
     return 0;
 }
