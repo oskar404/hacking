@@ -7,13 +7,13 @@ int main()
 {
     char line[256];
     
-    while (printf("> "), gets(line) != NULL)
+    while (printf("> "), fgets(line, sizeof(line), stdin) != NULL)
     {
         if (fork() == 0) /* Child */
         {
             execlp(line, line, (char *)0);
             /* Don't come here if execlp() fails */
-            //printf("Unknown command: %s\n", line);
+            /* printf("Unknown command: %s\n", line); */
             perror(line);
             exit(1);
         }
