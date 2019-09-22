@@ -6,7 +6,7 @@
 int main()
 {
     char line[256];
-    
+
     while (printf("> "), fgets(line, sizeof(line), stdin) != NULL)
     {
         if (fork() == 0) /* Child */
