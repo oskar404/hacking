@@ -6,7 +6,7 @@
 
 CXXFLAGS :=
 CC := clang -Wall -ansi
-PRGS := forkdemo tinyshell zombiefarm libc
+PRGS := forkdemo tinyshell zombiefarm sysenv
 
 all: $(PRGS)
 
@@ -19,7 +19,7 @@ tinyshell: tinyshell.c
 zombiefarm: zombiefarm.c
 	$(CC) -o $@ $<
 
-libc: libc.c
+sysenv: sysenv.c
 	clang -Wall -Wno-#pragma-messages -std=c99 -o $@ $<
 
 clean:
