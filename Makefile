@@ -6,8 +6,9 @@
 
 CXXFLAGS :=
 CC := clang -Wall -ansi
+PRGS := forkdemo tinyshell zombiefarm libc
 
-all: forkdemo tinyshell zombiefarm
+all: $(PRGS)
 
 forkdemo: forkdemo.c
 	$(CC) -o $@ $<
@@ -18,9 +19,13 @@ tinyshell: tinyshell.c
 zombiefarm: zombiefarm.c
 	$(CC) -o $@ $<
 
+libc: libc.c
+	clang -Wall -Wno-#pragma-messages -std=c99 -o $@ $<
+
 clean:
 	@rm -f *~ src/*.o src/*~
 	@rm -f output.txt
 
 distclean: clean
-	@rm -f forkdemo tinyshell zombiefarm
+	@rm -f $(PRGS)
+
