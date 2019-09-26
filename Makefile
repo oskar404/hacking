@@ -6,7 +6,7 @@
 
 CXXFLAGS :=
 CC := clang -Wall -ansi
-PRGS := forkdemo tinyshell zombiefarm sysenv errno
+PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit
 
 all: $(PRGS)
 
@@ -23,6 +23,9 @@ sysenv: sysenv.c
 	clang -Wall -Wno-#pragma-messages -std=c99 -o $@ $<
 
 errno: errno.c
+	clang -Wall -std=c99 -o $@ $<
+
+openlimit: openlimit.c
 	clang -Wall -std=c99 -o $@ $<
 
 clean:
