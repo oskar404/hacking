@@ -6,7 +6,8 @@
 
 CXXFLAGS :=
 CC := clang -Wall -ansi
-PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit
+PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit lseeking
+TEST := testfile
 
 all: $(PRGS)
 
@@ -28,9 +29,12 @@ errno: errno.c
 openlimit: openlimit.c
 	clang -Wall -std=c99 -o $@ $<
 
+lseeking: lseeking.c
+	clang -Wall -std=c99 -o $@ $<
+
 clean:
 	@rm -f *~ src/*.o src/*~
-	@rm -f output.txt
+	@rm -f output.txt $(TEST)
 
 distclean: clean
 	@rm -f $(PRGS)

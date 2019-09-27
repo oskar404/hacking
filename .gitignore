@@ -58,6 +58,10 @@ dkms.conf
 /sysenv
 /errno
 /openlimit
+/lseeking
+
+# Ignore testfiles
+testfile
 
 # Ignore external examples
 /tlpi-dist/
