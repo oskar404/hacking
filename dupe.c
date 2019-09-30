@@ -28,8 +28,8 @@ int main()
     size_t len;
     int outfd, errfd;
     int fd = open(
-            testfile, 
-            O_RDWR|O_CREAT|O_TRUNC|O_APPEND|O_EXCL, 
+            testfile,
+            O_RDWR|O_CREAT|O_TRUNC|O_APPEND|O_EXCL,
             S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
 
     if (fd == -1)
@@ -46,14 +46,14 @@ int main()
         perror("fileno(stdout)");
         exit(EXIT_FAILURE);
     }
-    
+
     errfd = fileno(stderr);
     if (errfd == -1)
     {
         perror("fileno(stderr)");
         exit(EXIT_FAILURE);
     }
-    
+
     outfd = dup2(fd, outfd);
     if (outfd == -1)
     {
