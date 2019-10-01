@@ -38,6 +38,13 @@ fdtest: fdtest.c
 dupe: dupe.c
 	clang -Wall -std=c99 -o $@ $<
 
+size:
+	@echo "# text: Machine code"
+	@echo "# data: Initilized global data"
+	@echo "# bss:  Uninitialized global data"
+	@echo "# dec/hex: Sum of previous fields"
+	@size $(PRGS)
+
 clean:
 	@rm -f *~ src/*.o src/*~
 	@rm -f output.txt $(TEST)
