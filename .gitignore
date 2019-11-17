@@ -67,3 +67,6 @@ testfile
 
 # Ignore external examples
 /tlpi-dist/
+
+# Ignore VS Code workspace files
+*.code-workspace
