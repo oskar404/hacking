@@ -12,3 +12,5 @@ echo
 echo "PPID: $PPID"
 cat /proc/$PPID/cmdline
 echo
+cat /proc/sys/kernel/pid_max
+echo
