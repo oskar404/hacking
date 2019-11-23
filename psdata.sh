@@ -17,4 +17,5 @@ echo "PID: $$"
 echo "PPID: $PPID"
 proccat /proc/$$/cmdline
 proccat /proc/$PPID/cmdline
+proccat /proc/self/cmdline
 proccat /proc/sys/kernel/pid_max
