@@ -7,7 +7,7 @@
 CXXFLAGS :=
 CC := clang -Wall -ansi
 PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit lseeking fdtest \
-		dupe pids piddata pidenv
+		dupe pids piddata pidenv jmp
 TEST := testfile
 
 all: $(PRGS)
@@ -47,6 +47,9 @@ piddata: pids
 
 pidenv: pids
 	ln -s pids pidenv
+
+jmp: jmp.c
+	clang -Wall -std=c99 -o $@ $<
 
 size:
 	@echo "# text: Machine code"
