@@ -65,6 +65,7 @@ dkms.conf
 /piddata
 /pidenv
 /jmp
+/mem
 
 # Ignore testfiles
 testfile
