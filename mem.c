@@ -33,6 +33,10 @@ void check_ptr(void* ptr)
         printf("malloc(%zu) failed\n", block_size);
         exit(EXIT_FAILURE);
     }
+    else
+    {
+        printf("malloc(%zu): %p\n", block_size, ptr);
+    }
 }
 
 
@@ -44,7 +48,6 @@ void malloc_test()
     printf("sbrk(0):  %p\n", sbrk(0L));
     void* ptr = malloc(block_size);
     check_ptr(ptr);
-    printf("malloc(): %p\n", ptr);
     printf("sbrk(0):  %p\n", sbrk(0L));
     free(ptr);
 }
@@ -55,7 +58,6 @@ void double_free_test()
     printf("double_free_test()\n");
     void* ptr = malloc(block_size);
     check_ptr(ptr);
-    printf("malloc(): %p\n", ptr);
     free(NULL);
     free(ptr);
     free(ptr);  /* Crash! */
@@ -67,7 +69,6 @@ void use_after_free_test()
     printf("use_after_free_test()\n");
     char* ptr = (char*)malloc(block_size);
     check_ptr(ptr);
-    printf("malloc(): %p\n", ptr);
     ptr[0] = 'a';
     printf("ptr[0]: %c\n", ptr[0]);
     free(ptr);
