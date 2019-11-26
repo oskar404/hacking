@@ -15,10 +15,11 @@ extern char end;
 
 void usage()
 {
-    printf("usage: %s [-m|-d] [-b size]\n\n", program_invocation_short_name);
+    printf("usage: %s [-m|-d|-u] [-b size]\n\n", program_invocation_short_name);
     printf("  Run various memory function tests (malloc(), free() ..)\n\n");
     printf("  -m       malloc_test()\n");
     printf("  -d       double_free_test()\n");
+    printf("  -u       use_after_free_test()\n");
     printf("  -b size  Block size used when allocating memory (default: %zu)\n",
            block_size);
     exit(EXIT_FAILURE);
@@ -61,18 +62,41 @@ void double_free_test()
 }
 
 
+void use_after_free_test()
+{
+    printf("use_after_free_test()\n");
+    char* ptr = (char*)malloc(block_size);
+    check_ptr(ptr);
+    printf("malloc(): %p\n", ptr);
+    ptr[0] = 'a';
+    printf("ptr[0]: %c\n", ptr[0]);
+    free(ptr);
+    /* These work with standard c-library implementation.
+       Debugging needs Valgrind or some malloc debugging library. */
+    printf("after free(ptr)\nread ptr[0]: ");
+    char c = ptr[0];
+    printf("%c\n", c);
+    printf("write ptr[0]: ");
+    ptr[0] = 'X';
+    printf("%c\n", ptr[0]);
+}
+
+
 int main(int argc, char* argv[])
 {
-    TestFunction test_ptr = NULL;
+    TestFunction test_ptr = &malloc_test;
     int opt;
 
-    while ((opt = getopt(argc, argv, "hmdb:")) != -1) {
+    while ((opt = getopt(argc, argv, "hmdub:")) != -1) {
         switch (opt) {
         case 'm':
             test_ptr = &malloc_test;
             break;
         case 'd':
             test_ptr = &double_free_test;
+            break;
+        case 'u':
+            test_ptr = &use_after_free_test;
             break;
         case 'b':
             {
@@ -96,10 +120,8 @@ int main(int argc, char* argv[])
     if (optind < argc)
         usage();
 
-    if (test_ptr)
-        (*test_ptr)();
-    else
-        malloc_test();
+    /* Run the test */
+    (*test_ptr)();
 
     return 0;
 }
