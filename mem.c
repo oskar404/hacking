@@ -18,10 +18,12 @@ extern char end;
 
 void usage()
 {
-    printf("usage: %s [-m|-d|-u] [-b size]\n\n", program_invocation_short_name);
+    printf("usage: %s [-m|-M|-S|-d|-u] [-b size] [-s size]\n\n",
+            program_invocation_short_name);
     printf("  Run various memory function tests (malloc(), free() ..)\n\n");
     printf("  -m       malloc_test()\n");
     printf("  -M       multiple_mallocs_test()\n");
+    printf("  -S       stack_test()\n");
     printf("  -d       double_free_test()\n");
     printf("  -u       use_after_free_test()\n");
     printf("\nControls for tests:");
@@ -84,6 +86,23 @@ void multiple_mallocs_test()
 }
 
 
+void stack_recurse(int i)
+{
+    int number=i;
+    if (i > iterations)
+        return;
+    printf("recurse(%d): &int -> %p\n", i, &number);
+    stack_recurse(i+1);
+}
+
+
+void stack_test()
+{
+    printf("stack_test()\n");
+    stack_recurse(1);
+}
+
+
 void double_free_test()
 {
     printf("double_free_test()\n");
@@ -119,13 +138,16 @@ int main(int argc, char* argv[])
     TestFunction test_ptr = &malloc_test;
     int opt;
 
-    while ((opt = getopt(argc, argv, "hmMdub:s:")) != -1) {
+    while ((opt = getopt(argc, argv, "hmMSdub:s:")) != -1) {
         switch (opt) {
         case 'm':
             test_ptr = &malloc_test;
             break;
         case 'M':
             test_ptr = &multiple_mallocs_test;
+            break;
+        case 'S':
+            test_ptr = &stack_test;
             break;
         case 'd':
             test_ptr = &double_free_test;
