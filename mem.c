@@ -267,7 +267,6 @@ int main(int argc, char* argv[])
             }
             break;
         case 'h':
-            printf("help\n");
             usage();
             break;
         default: /* '?' */
