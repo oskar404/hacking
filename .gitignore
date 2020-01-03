@@ -76,3 +76,4 @@ testfile
 
 # Ignore VS Code workspace files
 *.code-workspace
+/.vscode/
