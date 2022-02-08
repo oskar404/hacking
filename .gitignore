@@ -67,6 +67,9 @@ dkms.conf
 /jmp
 /mem
 /usr
+/main0
+/main1
+/main2
 
 # Ignore testfiles
 testfile
