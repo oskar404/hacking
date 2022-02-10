@@ -29,5 +29,6 @@ int main()
     test("./main0", empty, empty);
     test("./main1", empty, empty);
     test("./main2", empty, empty);
+    test("./main2", (char * const *)NULL, (char * const *)NULL);
     return 0;
 }
