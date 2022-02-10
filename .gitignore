@@ -70,6 +70,7 @@ dkms.conf
 /main0
 /main1
 /main2
+/execve
 
 # Ignore testfiles
 testfile
