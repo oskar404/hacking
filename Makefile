@@ -7,9 +7,7 @@
 CXXFLAGS :=
 CC := clang -Wall -ansi
 PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit lseeking fdtest \
-		dupe pids piddata pidenv jmp mem main0 main1 main2 execve
-#PRGS := forkdemo tinyshell zombiefarm sysenv errno openlimit lseeking fdtest \
-#		dupe pids piddata pidenv jmp mem usr
+		dupe pids piddata pidenv jmp mem main0 main1 main2 execve usr
 TEST := testfile
 
 all: $(PRGS)
@@ -56,8 +54,8 @@ jmp: jmp.c
 mem: mem.c
 	clang -Wall -std=c99 -o $@ $<
 
-#usr: usr.c
-#	clang -Wall -std=c99 -o $@ $<
+usr: usr.c
+	clang -Wall -std=c99 -o $@ $<
 
 main0: main.c
 	clang -Wall -std=c99 -o $@ $<
